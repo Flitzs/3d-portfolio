@@ -1,6 +1,10 @@
 {
   "name": "3d-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
