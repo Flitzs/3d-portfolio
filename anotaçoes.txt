@@ -1,0 +1,46 @@
+cd C:\Users\Usuario\Documents\JV\Program-thingys\3d-app
+
+D&D or Star Wars Theme
+
+Icosahedron (
+    const radius = 7;  
+    const geometry = new THREE.IcosahedronGeometry(radius);
+)
+Dodecahedron (
+    const radius = 7;  
+    const geometry = new THREE.DodecahedronGeometry(radius);
+)
+Cube (
+    const width =  5.0;  
+    const height =  5.0;  
+    const depth =  5.0;  
+    const geometry = new THREE.BoxGeometry(width, height, depth);
+)
+Octahedron (
+    const radius = 7;  
+    const geometry = new THREE.OctahedronGeometry(radius);
+)
+tetrahedron (
+    const radius = 7;  
+    const geometry = new THREE.TetrahedronGeometry(radius);
+)
+  color = 0x3f2884,
+  transparent = true,
+  opacity = 0.56,
+  wireframe = true
+
+const  = new ();
+
+// Terra
+
+// const terraTexture = new THREE.TextureLoader().load('earth.jpg');
+
+// const terra = new THREE.Mesh(
+//   new THREE.SphereGeometry(6, 64, 64),
+//   new THREE.MeshStandardMaterial({
+//     map: terraTexture,
+//     normalMap: normalTexture,
+//   })
+// );
+// terra.position.z = 70;
+// terra.position.setX(-30);

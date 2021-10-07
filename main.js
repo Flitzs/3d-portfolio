@@ -35,7 +35,11 @@ const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(20,20,20);
 const ambientLight = new THREE.AmbientLight(0xffffff);
 const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(pointLight, ambientLight, gridHelper);
+scene.add(
+  pointLight, 
+  ambientLight, 
+  // gridHelper
+);
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -56,7 +60,75 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
-// Animate
+// Textura Espaço
+
+const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+scene.background = spaceTexture;
+
+// Monke Box
+
+const monkeTexture = new THREE.TextureLoader().load('monkeb.png');
+
+const monke = new THREE.Mesh(
+  new THREE.BoxGeometry(3.5, 3.5, 3.5), 
+  new THREE.MeshBasicMaterial({ map: monkeTexture })
+);
+
+scene.add(monke);
+
+// Jim de la Luna
+
+const lunaTexture = new THREE.TextureLoader().load('moon.jpg');
+
+const luna = new THREE.Mesh(
+  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: lunaTexture,
+    // normalMap: normalTexture,
+  })
+);
+
+// Terra
+
+const terraTexture = new THREE.TextureLoader().load('earth.jpg');
+
+const terra = new THREE.Mesh(
+  new THREE.SphereGeometry(6, 64, 64),
+  new THREE.MeshStandardMaterial({
+    map: terraTexture,
+    // normalMap: normalTexture,
+  })
+);
+
+
+// Positions
+
+scene.add(luna, terra);
+
+luna.position.z = 30;
+luna.position.setX(-10);
+
+terra.position.z = 35;
+terra.position.y = 10;
+terra.position.setX(-30);
+
+monke.position.z = -5;
+monke.position.x = 2;
+
+// Scroll animacion
+
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+  
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.rotation.y = t * -0.0002;
+}
+
+document.body.onscroll = moveCamera;
+moveCamera();
+
+// Animacion loop
 
 function animate() {
   requestAnimationFrame( animate )
@@ -64,6 +136,17 @@ function animate() {
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
+
+  luna.rotation.x += 0.005;
+  luna.rotation.y += 0.0075;
+  luna.rotation.z += 0.005;
+
+  monke.rotation.y += 0.01;
+  monke.rotation.z += 0.01;
+
+  terra.rotation.x += 0.005;
+  terra.rotation.y += 0.0075;
+  terra.rotation.z += 0.005;
   
   controls.update();
   
